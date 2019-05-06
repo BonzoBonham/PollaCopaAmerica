@@ -1,20 +1,17 @@
-Jorge Luis Soriano Cuevas | [JLSC24]() 
-Luis Felipe Montoya Torres | [LuisMontooya]() 
-Simón Valencia Ochoa | [simonv00]()
-Pablo José Calle Botero | [PJCB1998]()
-María Clara Lacouture Gómez	| [mariaclaralacouture]()
-Alexis García Ramírez | [agarcia196]()
-Andrés Vélez Zapata | [andresvelez11]()
-Nicolás Pérez Horta	 | [BonzoBonham]()
-Santiago Bedoya Torres	| [Sabeto051]() 
-Juan José Jaramillo Botero	| []() 
-Samuel Arango Serrano	| [samuelarango99]() 
-Camilo Arango Pérez	 | []()
-Kevin Alexander Ibarra Orozco | [TheKafer]() 
-Andrea Catalina Reyes Montoya | [CatalinaReyesMontoya]() 
-Juan Carlos Henao López	 | [JuanCarlosHenao]()
-Jeisson Harvey Barrera Sánchez | [jbarrera094]()
-Fabio Enrique Anaya Castillo | [ Fabiozil ]()
-Juan Pablo Restrepo Hernández | []()
-Mateo Zuluaga Loaiza | [ zulo30
-]()
+@JLSC24
+@LuisMontooya
+@simonv00
+@PJCB1998
+@mariaclaralacouture
+@Aagarcia196
+@andresvelez11
+@BonzoBonham
+@Sabeto051
+@samuelarango99
+@TheKafer
+@CatalinaReyesMontoya
+@JuanCarlosHenao
+@jbarrera094
+@Fabiozil
+@Vespertian
+@zulo30
