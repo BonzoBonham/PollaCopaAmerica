@@ -18,7 +18,7 @@ Nicolás Pérez Horta	 | [BonzoBonham](https://github.com/BonzoBonham)
 
 Santiago Bedoya Torres	| [Sabeto051](https://github.com/Sabeto051) 
 
-Juan José Jaramillo Botero	| [](https://github.com/) 
+Juan José Jaramillo Botero	| [JuanJoseJ](https://github.com/JuanJoseJ) 
 
 Samuel Arango Serrano	| [samuelarango99](https://github.com/samuelarango99) 
 
