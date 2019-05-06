@@ -22,7 +22,7 @@ Juan José Jaramillo Botero	| [](https://github.com/)
 
 Samuel Arango Serrano	| [samuelarango99](https://github.com/samuelarango99) 
 
-Camilo Arango Pérez	 | [](https://github.com/)
+Camilo Arango Pérez	| [camiloarango96](https://github.com/camiloarango96)
 
 Kevin Alexander Ibarra Orozco | [TheKafer](https://github.com/TheKafer) 
 
