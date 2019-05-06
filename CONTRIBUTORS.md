@@ -1,4 +1,4 @@
-# Contributors 
+# Contributors :busts_in_silhouette:
 
 Jorge Luis Soriano Cuevas | [JLSC24](https://github.com/JLSC24) 
 
