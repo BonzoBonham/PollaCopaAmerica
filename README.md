@@ -1,6 +1,6 @@
 #PollaCopaAmerica
 Trabajo de Diseño y Analisis de Software | Universidad EIA ![logo eia](https://github.com/EIA-University/LogosEIA/blob/master/assets/png/logo-eia-icon.png?raw=true)
-Software para la organizacion de la polla de la Copa America. Desarrollado para la clase de Analisis y DIseño de Software.
+Software para la organizacion de la polla de la Copa America. Desarrollado para la clase de Analisis y Diseño de Software.
 
 
 ## Requerimientos
