@@ -6,7 +6,7 @@ Software para la organizacion de la polla de la Copa America. Desarrollado para 
 
 ## Log horas de trabajo
 
-https://docs.google.com/spreadsheets/d/1EumZ7lT7uqr5Nqyd2tLlsDz7mIX3mx0o_pT0jicEsdE/edit?usp=sharing
+:alarm_clock: [log horas](https://docs.google.com/spreadsheets/d/1EumZ7lT7uqr5Nqyd2tLlsDz7mIX3mx0o_pT0jicEsdE/edit?usp=sharing)
 
 
 ## Requerimientos
@@ -66,8 +66,11 @@ para correr el proyecto:
 ## Recursos
 * laracast | [https://laracasts.com](https://laracasts.com)
 * importar proyecto | [https://devmarketer.io](https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/)
+
+### recursos para el front-end
+* bootwatch |[https://bootswatch.com/lux/](https://bootswatch.com/lux/)
 * fontawesome | [https://fontawesome.com/icons?d=gallery&q=plus&m=free](https://fontawesome.com/icons?d=gallery&q=plus&m=free)
-* boostrap theme | [https://startbootstrap.com/previews/sb-admin-2/](https://startbootstrap.com/previews/sb-admin-2/)
+* boostrap theme | [https://www.templatemonster.com/demo/52669.html](https://www.templatemonster.com/demo/52669.html)
 * boostrap docs | [https://getbootstrap.com/docs](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
 * chartjs   |  [https://www.chartjs.org/docs/latest/](https://www.chartjs.org/docs/latest/)
 
