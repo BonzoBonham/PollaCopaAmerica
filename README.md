@@ -4,6 +4,10 @@ Trabajo de Analisis y Diseño de Software | Universidad EIA ![logo eia](https://
 
 Software para la organizacion de la polla de la Copa America. Desarrollado para la clase de Analisis y Diseño de Software.
 
+# Log horas de trabajo
+
+https://docs.google.com/spreadsheets/d/1EumZ7lT7uqr5Nqyd2tLlsDz7mIX3mx0o_pT0jicEsdE/edit?usp=sharing
+
 
 ## Requerimientos
 * Laravel | [https://laravel.com](https://laravel.com)
