@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/equipo', 'EquipoController');
+
+Route::resource('/partido', 'PartidoController');
+
+Route::resource('/user', 'UserController');
