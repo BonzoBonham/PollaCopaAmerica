@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    // A el usuario le pertenece solo un equipo
+    public function equipo() {
+        return $this->belongsTo('App\Equipo');
+    }
+
     use Notifiable;
 
     /**
