@@ -1,8 +1,22 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+
+//
+
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Bottswatch lux theme 
+@import "bootswatch";
+
+
+.separator{ 
+    border:         none;
+    border-left:    1px solid hsla(200, 10%, 50%,100);
+    height:         auto;
+    width:          1px;       
+}
