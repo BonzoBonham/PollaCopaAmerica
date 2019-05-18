@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+	
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('equipos','equiposController');
+Route::get('/apuestas','equiposController@index')->name('apuestas');
+
+
