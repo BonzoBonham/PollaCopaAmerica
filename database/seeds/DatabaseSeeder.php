@@ -13,9 +13,12 @@ class DatabaseSeeder extends Seeder
     {
     	 $number = 200; 
         // $this->call(UsersTableSeeder::class);
+
+        factory(App\User::class, 1)->states('myown')->create();
     	factory(App\User::class, $number)->create();
     	factory(App\Partido::class, $number)->create();
     	factory(App\Equipo::class, $number)->create();
+
 
     }
 }
