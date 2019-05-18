@@ -18,7 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 	
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('equipos','equiposController');
+
+// No sé de quién - alguien creó otro controlador para los equipos
+Route::resource('/equipos','equiposController');
 Route::get('/apuestas','equiposController@index')->name('apuestas');
+// De Santiago Bedoya
+Route::resource('/equipos', 'EquipoController');
 
+Route::resource('/partidos', 'PartidoController');
 
+Route::resource('/user', 'UserController');
