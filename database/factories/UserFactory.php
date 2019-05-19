@@ -18,6 +18,7 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
+        'equipo_id'=>$faker->numberBetween(1,12),
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
@@ -28,7 +29,8 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->state(App\User::class, 'myown', function (\Faker\Generator $faker) {
   return [
-   		'name' => 'Juan Esteban Velazques',
+        'equipo_id'=>$faker->numberBetween(1,12),
+   		  'name' => 'Juan Esteban Velazques',
         'email' => 'zulo30@icloud.com',
         'email_verified_at' => now(),
         'password' => '$2y$10$qDZNoxQshvLBSFjZEZ/AmOMHLsRyHgN4L45H7Vc2YLM4vwZvxnFd.', // Password123
