@@ -19,6 +19,8 @@ class CreateTableEquipoPartido extends Migration
             $table->unsignedBigInteger('equipo_id');
             $table->foreign('equipo_id')->references('id')->on('equipos');
 
+            $table->tinyInteger('goles')->default(0);
+
             $table->timestamps();
         });
     }
