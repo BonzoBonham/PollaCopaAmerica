@@ -22,7 +22,7 @@ class PartidosTableSeeder extends Seeder
         $rondas = array('cuartos', 'semifinales', 'final');
          for ($i=0; $i < 3; $i++) { 
             for ($j=0; $j < $ppr[$i] ; $j++) { 
-                $partido = factory(App\Partido::class)->states($rondas[$j])->create();
+                $partido = factory(App\Partido::class)->states($rondas[$i])->create();
             }
          }
     }
