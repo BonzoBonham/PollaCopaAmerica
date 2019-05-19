@@ -18,8 +18,8 @@ class PartidosTableSeeder extends Seeder
     }
 
     public function partidosFaseDeEliminacion(){
-        $ppr = array(4,2,2);
-        $rondas = array('cuartos', 'semifinales', 'final');
+        $ppr = array(4,2,1,1);
+        $rondas = array('cuartos', 'semifinales','tercero', 'final');
          for ($i=0; $i < 3; $i++) { 
             for ($j=0; $j < $ppr[$i] ; $j++) { 
                 $partido = factory(App\Partido::class)->states($rondas[$i])->create();

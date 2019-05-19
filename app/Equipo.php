@@ -21,8 +21,7 @@ class Equipo extends Model
         return $this->belongsToMany('App\Partido')->fase(1);
     }
 
-    public function scopeGrupo($query, $grupo)
-    {
+    public function scopeGrupo($query, $grupo){
         return $query->where('grupo', '=', $grupo);
     }
 
