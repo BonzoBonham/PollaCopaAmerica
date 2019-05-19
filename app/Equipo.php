@@ -13,9 +13,13 @@ class Equipo extends Model
         return $this->hasMany(User::class);
     }
 
-    // public function partidos() {
-    //     return $this->belongsToMany('App\Partido')->withTimestamps();
-    // }
+    public function partidos() {
+        return $this->belongsToMany('App\Partido')->withTimestamps();
+    }
+
+    public function partidosDeFaseGrupos() {
+        return $this->belongsToMany('App\Partido')->fase(1);
+    }
 
     public function scopeGrupo($query, $grupo)
     {

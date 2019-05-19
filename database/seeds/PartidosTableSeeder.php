@@ -22,7 +22,7 @@ class PartidosTableSeeder extends Seeder
      * @return void
      */
     public function insertEquiposPartidos($eq1, $eq2){
-        $partido = factory(App\Partido::class)->states('grupos')->make();
+        $partido = factory(App\Partido::class)->create();
            DB::table('equipo_partido')->insert(
                 [
                     'partido_id' => $partido->id,
