@@ -17,6 +17,7 @@ class CreateTableEquipos extends Migration
             $table->bigIncrements('id');
             $table->char('grupo', 1);
             $table->string('nombre');
+            $table->boolean('ganador')->default(0);
             $table->timestamps();
         });
     }

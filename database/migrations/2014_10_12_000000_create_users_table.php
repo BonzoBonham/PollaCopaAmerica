@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->foreign('equipo_id')->references('id')->on('equipos');
             //$table->foreign('equipo_id')->references('id')->on('equipos');
             $table->string('name');
+            $table->boolean('ganador')->default(0);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
