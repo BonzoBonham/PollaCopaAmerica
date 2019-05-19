@@ -25,18 +25,18 @@ $factory->define(Partido::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(App\User::class, 'grupos',[
+$factory->state(Partido::class, 'grupos',[
    'fase' => '1'
 ]);
 
-$factory->state(App\User::class, 'cuartos', [
+$factory->state(Partido::class, 'cuartos', [
    'fase' => '2'
 ]);
 
-$factory->state(App\User::class, 'semifinales', [
+$factory->state(Partido::class, 'semifinales', [
     'fase' => '3'
 ]);
 
-$factory->state(App\User::class, 'final', [
+$factory->state(Partido::class, 'final', [
     'fase' => '4'
 ]);

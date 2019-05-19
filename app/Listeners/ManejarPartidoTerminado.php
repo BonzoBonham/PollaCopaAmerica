@@ -30,10 +30,9 @@ class manejarPartidoTerminado
         $status = $partido->terminado;
         $fase = $partido->partido->fase + 1; 
         $equipos = $partido->equipos;
-        App\Partido
-        if ($fase < 1) {
-           assignarSiguientePartido();
-
-        }
+        // if ($fase < 1) {
+        //    assignarSiguientePartido();
+        // }
+        return false;
     }
 }
