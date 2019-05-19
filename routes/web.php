@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 Route::get('/grupos/{grupo}','ResultadosController@grupos');
 Route::get('/eliminatoria','ResultadosController@eliminatoria');
@@ -20,7 +20,7 @@ Route::get('/eliminatoria','ResultadosController@eliminatoria');
 
 Auth::routes();
 	
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/lahome', 'HomeController@index')->name('home');
 
 // No sé de quién - alguien creó otro controlador para los equipos
 Route::resource('/equipos','equiposController');

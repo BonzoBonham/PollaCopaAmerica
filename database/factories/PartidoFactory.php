@@ -38,7 +38,7 @@ $factory->state(Partido::class, 'semifinales', [
 ]);
 
 $factory->state(Partido::class, 'tercero', [
-    'fase' => '3'
+    'fase' => '4'
 ]);
 
 $factory->state(Partido::class, 'final', [
