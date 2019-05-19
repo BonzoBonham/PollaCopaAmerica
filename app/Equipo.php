@@ -16,4 +16,12 @@ class Equipo extends Model
     // public function partidos() {
     //     return $this->belongsToMany('App\Partido')->withTimestamps();
     // }
+
+    public function scopeGrupo($query, $grupo)
+    {
+        return $query->where('grupo', '=', $grupo);
+    }
+
+
+
 }

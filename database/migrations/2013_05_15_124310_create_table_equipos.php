@@ -14,7 +14,6 @@ class CreateTableEquipos extends Migration
     public function up()
     {
         Schema::create('equipos', function (Blueprint $table) {
-
             $table->bigIncrements('id');
             $table->char('grupo', 1);
             $table->string('nombre');

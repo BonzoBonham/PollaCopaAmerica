@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Partido;
+use App\Equipo;
 
 class PartidosTableSeeder extends Seeder
 {
@@ -11,7 +13,7 @@ class PartidosTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Partido::class, 26)->create();
+      $this->partidosFaseDeGrupos();
     }
 
     /**
@@ -19,15 +21,20 @@ class PartidosTableSeeder extends Seeder
      *
      * @return void
      */
-    public function insertEquiposPartidos($equipos){
-        foreach ($equipos as &$equipo) {
-           DB::table('equipos_partidos')->insert(
+    public function insertEquiposPartidos($eq1, $eq2){
+        $partido = factory(App\Partido::class)->states('grupos')->make();
+           DB::table('equipo_partido')->insert(
                 [
-                    'partido_id' => Partido::select('id')->orderByRaw("RAND()")->first()->id,
-                    'equipo_id' => Equipo::select('id')->where('nombre',$equipo)->id
+                    'partido_id' => $partido->id,
+                    'equipo_id' => Equipo::select('id')->where('nombre',$eq1)->first()->id
                 ]
             );
-        }
+           DB::table('equipo_partido')->insert(
+                [
+                    'partido_id' => $partido->id,
+                    'equipo_id' => Equipo::select('id')->where('nombre',$eq2)->first()->id
+                ]
+            );
     }
 
      /**
@@ -54,9 +61,8 @@ class PartidosTableSeeder extends Seeder
     public function partidosFDG(array $grupo){
         for ($i = 0; $i < sizeof($grupo); $i++) { 
             for ($j = $i+1; $j < sizeof($grupo); $j++) { 
-                $a = array();
-                array_push($a,$grupo[$i],$grupo[$j]);
-                insertEquiposPartidos();
+                $a = array($grupo[$i],$grupo[$j]);
+                call_user_func_array (array($this, "insertEquiposPartidos"), $a);
             }
         }
     }
