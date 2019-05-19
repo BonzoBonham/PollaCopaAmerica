@@ -1,16 +1,6 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-  
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-        <title>Laravel</title>
+@extends('layouts.app')
 
-</head>
-
-<body>
+@section('content')
 <div class="container">
       <div class="container">
            <table id="equipos">
@@ -47,5 +37,4 @@
           });
         </script>
 </div>
-</body>
-</html>
+@endsection

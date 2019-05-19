@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('home.index');
 });
+Route::get('/grupos/{grupo}','ResultadosController@grupos');
+Route::get('/eliminatoria','ResultadosController@eliminatoria');
+
 
 Auth::routes();
 	

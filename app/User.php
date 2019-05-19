@@ -8,11 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    // A el usuario le pertenece solo un equipo
-    public function equipo() {
-        return $this->belongsTo('App\Equipo');
-    }
-
     use Notifiable;
 
     /**
@@ -41,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     // A el usuario le pertenece solo un equipo
+    public function equipo() {
+        return $this->belongsTo('App\Equipo');
+    }
+
+     public function scopeGanadores($query){
+        return $query->where('grupo', '=', '1');
+    }
+
 }

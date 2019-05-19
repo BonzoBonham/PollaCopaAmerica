@@ -14,4 +14,7 @@ class Partido extends Model
     {
         return $query->where('fase', '=', $fase);
     }
+    public function scopeEliminatoria($query){
+        return $query->where('fase', '>', '1');
+    }
 }
