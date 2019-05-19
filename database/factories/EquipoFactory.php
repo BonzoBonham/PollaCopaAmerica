@@ -21,6 +21,8 @@ $factory->define(Equipo::class, function (Faker $faker) {
 		'Chile',
 	);
     return [
-        'nombre' => $faker->randomElement($equipos)
+
+        'nombre' => $faker->randomElement($equipos),
+        'grupo' => $faker->randomElement(array('a','b','c'))
     ];
 });

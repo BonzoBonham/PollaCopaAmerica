@@ -11,18 +11,35 @@ class EquiposTableSeeder extends Seeder
      */
     public function run()
     {
-         $this->insertEquipos();
+         $this->makeEquipos();
+    }
+
+
+
+    public function makeEquipos(){ 
+        $abc = array('A','B', 'C');
+        $grupos  = array( 
+            array('Brazil', 'Bolivia','Venezuela','Peru'), 
+            array('Argentina', 'Colombia','Paraguay','Qatar'),
+            array('Uruguay','Ecuador','Japan','Chile')
+        );
+
+        for ($row = 0; $row < 3; $row++) {
+            $this->insertEquipos($abc[$row], $grupos[$row]);
+        }
     }
      /**
      * Makes a insert of 12 teams into database
      *
      * @return void
      */
-    public function insertEquipos(){
-         $equipos  = array( 'Brazil', 'Bolivia','Venezuela','Peru', 'Argentina', 'Colombia','Paraguay','Qatar', 'Uruguay','Ecuador','Japan','Chile');
+    public function insertEquipos($a, $equipos){ 
         foreach ($equipos as &$equipo )  {
             DB::table('equipos')->insert(
-                ['nombre' => $equipo ]
+                [
+                    'grupo' => $a,
+                    'nombre' => $equipo,  
+                ]
             );
         }
     }
