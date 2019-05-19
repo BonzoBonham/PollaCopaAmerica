@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 Auth::routes();
 	
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/lahome', 'HomeController@index')->name('home');
 
 // No sé de quién - alguien creó otro controlador para los equipos
 Route::resource('/equipos','equiposController');
