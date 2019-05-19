@@ -19,7 +19,7 @@
                             <a class="nav-link" href="#"><i class="fas fa-trophy"></i> Copa <span class="sr-only">(current)</span></a>
                           </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-money-bill"></i> Apostar</a>
+                            <a class="nav-link" href="/equipos"><i class="fas fa-money-bill"></i> Apostar</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fas fa-futbol"></i> Partidos</a>
