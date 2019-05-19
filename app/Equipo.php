@@ -25,6 +25,4 @@ class Equipo extends Model
         return $query->where('grupo', '=', $grupo);
     }
 
-
-
 }

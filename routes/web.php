@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/grupos/{grupo}','ResultadosController@grupos');
+Route::get('/eliminatoria','ResultadosController@eliminatoria');
+
 
 Auth::routes();
 	
