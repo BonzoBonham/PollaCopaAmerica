@@ -6,7 +6,8 @@
         <div class="col-md-12">
           <h3>FASE DE ElIMINATORIA</h3>
           <hr class="my-4">
-          @include('layouts.partials.group-table')
+          @yield('layouts.partials.group-table', compact($equipos))
+
         </div>
     </div>
 </div>
