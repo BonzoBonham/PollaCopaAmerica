@@ -16,16 +16,23 @@
           @php
             $win = 0;
             $gf = 0;
+            $gc = 0;
+           
 
             foreach ($equipo->partidosFaseGrupos as $partido) {
               $gf += $partido->pivot->goles;
+              foreach ($partido->equipos->where('id', '!=', $equipo->id) as $rival){
+                $gc += $rival->pivot->goles;
+              }
             }
+             $dif = $gf - $gc;
           
             $win = $equipo->partidosFaseGruposGanados->count();
             $lost = $equipo->partidosFaseGruposPerdidos->count(); 
-            $tie = 1;
+            $tie = $equipo->partidosFaseGruposEmpatados->count();
             $pts = 3*$win + $tie;
-            $diff ='+4';
+            $diff =( $dif > 0) ?  '+'.$dif : $dif;
+
 
        
           @endphp

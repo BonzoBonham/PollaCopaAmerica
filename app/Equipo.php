@@ -26,6 +26,9 @@ class Equipo extends Model
      public function partidosFaseGruposPerdidos() {
         return $this->belongsToMany('App\Partido')->fase(1)->wherePivot('ganador', 0);
     }
+     public function partidosFaseGruposEmpatados() {
+        return $this->belongsToMany('App\Partido')->fase(1)->wherePivot('ganador', 2);
+    }
 
     public function scopeGrupo($query, $grupo){
         return $query->where('grupo', '=', $grupo);
