@@ -22,7 +22,6 @@ Auth::routes();
 	
 Route::get('/lahome', 'HomeController@index')->name('home');
 
-// No sé de quién - alguien creó otro controlador para los equipos
 Route::resource('/equipos','equiposController');
 Route::get('/apuestas','equiposController@index')->name('apuestas');
 
