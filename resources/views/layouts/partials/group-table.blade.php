@@ -14,11 +14,20 @@
       <div class="container-fluid">
         @foreach ($equipos as $equipo)
           @php
-            $win = 1;
-            $lost = 1; 
+            $win = 0;
+            $gf = 0;
+
+            foreach ($equipo->partidosFaseGrupos as $partido) {
+              $gf += $partido->pivot->goles;
+            }
+          
+            $win = $equipo->partidosFaseGruposGanados->count();
+            $lost = $equipo->partidosFaseGruposPerdidos->count(); 
             $tie = 1;
             $pts = 3*$win + $tie;
             $diff ='+4';
+
+       
           @endphp
 
            @component('layouts.partials.row-data', 

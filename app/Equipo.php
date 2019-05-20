@@ -14,11 +14,17 @@ class Equipo extends Model
     }
 
     public function partidos() {
-        return $this->belongsToMany('App\Partido')->withPivot('goles')->withTimestamps();
+        return $this->belongsToMany('App\Partido')->withPivot('goles', 'ganador')->withTimestamps();
     }
 
-    public function partidosDeFaseGrupos() {
-        return $this->belongsToMany('App\Partido')->fase(1);
+    public function partidosFaseGrupos() {
+        return $this->belongsToMany('App\Partido')->fase(1)->withPivot('goles', 'ganador');
+    }
+    public function partidosFaseGruposGanados() {
+        return $this->belongsToMany('App\Partido')->fase(1)->wherePivot('ganador', 1);
+    }
+     public function partidosFaseGruposPerdidos() {
+        return $this->belongsToMany('App\Partido')->fase(1)->wherePivot('ganador', 0);
     }
 
     public function scopeGrupo($query, $grupo){
