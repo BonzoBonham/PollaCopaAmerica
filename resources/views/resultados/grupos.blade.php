@@ -6,14 +6,17 @@
         <div class="col-md-12">
           <h3>GRUPO {{$equipos->first()->grupo}}</h3>
           <hr class="my-4">
-          @component('layouts.partials.group-table', ['equipos' => $equipos])
+          @component('layouts.partials.group-table', 
+            [
+              'equipos' => $equipos,
+            ])
           @endcomponent
         </div>
     </div>
 </div>
 @php
 	$grupo = $equipos->first()->grupo;
-	 $pag = array();
+	$pag = array();
 	switch ($grupo) {
     case 'A':
        $pag = array('C', 'B');

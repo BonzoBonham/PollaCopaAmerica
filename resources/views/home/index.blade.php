@@ -34,9 +34,3 @@
   </div>
 </div>
 @endsection
-
-@section('content')
-<!--<div class="container">
-   @include('layouts.partials.group-table')
-</div>-->
-@endsection

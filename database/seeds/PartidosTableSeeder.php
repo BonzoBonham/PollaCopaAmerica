@@ -59,7 +59,7 @@ class PartidosTableSeeder extends Seeder
         $grupos  = array( 
             array('Brazil', 'Bolivia','Venezuela','Peru'), 
             array('Argentina', 'Colombia','Paraguay','Qatar'),
-            array('Uruguay','Ecuador','Japan','Chile')
+            array('Uruguay','Ecuador','Japon','Chile')
         );
         for ($row = 0; $row < 3; $row++) {
             $this->partidosFDG($grupos[$row]);

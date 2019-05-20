@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Partido extends Model
 {
     public function equipos() {
-        return $this->belongsToMany('App\Equipo')->withTimestamps();
+        return $this->belongsToMany('App\Equipo')->withPivot('goles')->withTimestamps();
     }
 
     public function scopeFase($query, $fase)
@@ -17,4 +17,11 @@ class Partido extends Model
     public function scopeEliminatoria($query){
         return $query->where('fase', '>', '1');
     }
+    public function scopeGanados($query){
+        return $query->where('', '>', '1');
+    }
+    public function scopePerdidos($query){
+        return $query->where('fase', '>', '1');
+    }
+
 }

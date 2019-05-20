@@ -20,6 +20,7 @@ class CreateTableEquipoPartido extends Migration
             $table->foreign('equipo_id')->references('id')->on('equipos');
 
             $table->tinyInteger('goles')->default(0);
+            $table->boolean('ganador')->default(0);
 
             $table->timestamps();
         });

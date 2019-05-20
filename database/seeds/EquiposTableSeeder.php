@@ -21,7 +21,7 @@ class EquiposTableSeeder extends Seeder
         $grupos  = array( 
             array('Brazil', 'Bolivia','Venezuela','Peru'), 
             array('Argentina', 'Colombia','Paraguay','Qatar'),
-            array('Uruguay','Ecuador','Japan','Chile')
+            array('Uruguay','Ecuador','Japon','Chile')
         );
 
         for ($row = 0; $row < 3; $row++) {
@@ -38,7 +38,8 @@ class EquiposTableSeeder extends Seeder
             DB::table('equipos')->insert(
                 [
                     'grupo' => $a,
-                    'nombre' => $equipo,  
+                    'nombre' => $equipo,
+                    'bandera' => 'images/flags/'.strtolower($equipo) . '.svg',
                 ]
             );
         }

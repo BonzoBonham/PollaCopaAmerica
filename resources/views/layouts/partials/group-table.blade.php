@@ -16,7 +16,13 @@
            @component('layouts.partials.row-data', 
            [
             'index' => $loop->iteration,
-            'nombre' => $equipo->nombre
+            'nombre' => $equipo->nombre,
+            'bandera' => $equipo->bandera,
+            'win'  => '2',
+            'lost'  => '1',
+            'tie'  =>  '1',
+            'pts' => '3', 
+            'diff' => '+4', 
             ])
            @endcomponent
         @endforeach

@@ -43,7 +43,7 @@ class User extends Authenticatable
     }
 
      public function scopeGanadores($query){
-        return $query->where('grupo', '=', '1');
+        return $query->where('ganador', '=', '1');
     }
 
 }

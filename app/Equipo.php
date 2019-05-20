@@ -14,7 +14,7 @@ class Equipo extends Model
     }
 
     public function partidos() {
-        return $this->belongsToMany('App\Partido')->withTimestamps();
+        return $this->belongsToMany('App\Partido')->withPivot('goles')->withTimestamps();
     }
 
     public function partidosDeFaseGrupos() {
@@ -23,6 +23,9 @@ class Equipo extends Model
 
     public function scopeGrupo($query, $grupo){
         return $query->where('grupo', '=', $grupo);
+    }
+    public function scopeGanadores($query){
+        return $query->where('ganador', '=', '1');
     }
 
 }
