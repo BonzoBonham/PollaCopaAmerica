@@ -8,23 +8,33 @@
 			<hr class="my-4">
 			<div class="container">
 				<div class="row">
-				<div class="col-4">
-					@for ($i = 0; $i < 4; $i++)
-						@component('layouts.partials.score-card')
+				<div class="col-4 d-flex flex-column justify-content-around">
+					@foreach ($cuartos as $cuarto)
+						@component('layouts.partials.score-card',['partido' => $cuarto])
 						@endcomponent
-					@endfor
+					@endforeach
 				</div>
-				<div class="col-4">
-					@for ($i = 0; $i < 2 ; $i++)
-						@component('layouts.partials.score-card')
+				<div class="col-4 d-flex flex-column justify-content-around">
+					@foreach ($semis as $semi)
+						@component('layouts.partials.score-card', ['partido' =>$semi])
 						@endcomponent
-					@endfor
+					@endforeach
 				</div>
-				<div class="col-4">
-					@for ($i = 0; $i < 2; $i++)
-						@component('layouts.partials.score-card')
-						@endcomponent
-					@endfor
+				<div class="col-4 d-flex flex-column justify-content-end">
+					<div class="container px-0">
+						<div class="col px-0">
+							<div class="row-6 px-0 pt-3 pb-4">
+								<h3>Final</h3>
+								@component('layouts.partials.score-card', ['partido' => $final])
+								@endcomponent
+							</div>
+							<div class="row-6 px-0 pt-3">
+								<h5>3er Puesto</h5>
+								@component('layouts.partials.score-card',['partido' => $tercero])
+								@endcomponent
+							</div>	
+						</div>
+					</div>
 				</div>
 				</div>
 			</div>	

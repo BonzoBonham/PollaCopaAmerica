@@ -17,14 +17,24 @@ class ResultadosController extends Controller
     }
 
 	public function eliminatoria(){
-    	$partidos = Partido::eliminatoria()->get();
-    	return view('resultados.eliminatoria', compact($partidos));
+    	$cuartos = Partido::eliminatoria()->fase(2)->get();
+        $semis = Partido::eliminatoria()->fase(3)->get();
+        $tercero = Partido::eliminatoria()->fase(4)->get();
+        $final = Partido::eliminatoria()->fase(5)->get();
+    	return view('resultados.eliminatoria', 
+            [
+                'cuartos'=> $cuartos,
+                'semis' => $semis,
+                'tercero' => $tercero,
+                'final'  => $final,
+            ]
+        );
     }
 
     public function partidos(){
     	$partidos = Partido::all()->slice(0,18);
         // return $partidos;//para probar 
-    	return view('resultados.partidos', ['partidos'=>$partidos  ]);
+    	return view('resultados.partidos', ['partidos'=> $partidos ]);
     }  
 }
 
