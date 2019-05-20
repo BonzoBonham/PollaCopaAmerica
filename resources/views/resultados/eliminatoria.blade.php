@@ -25,13 +25,17 @@
 						<div class="col px-0">
 							<div class="row-6 px-0 pt-3 pb-4">
 								<h3>Final</h3>
-								@component('layouts.partials.score-card', ['partido' => $final])
-								@endcomponent
+								@foreach ($final as $fin)
+									@component('layouts.partials.score-card', ['partido' => $fin])
+									@endcomponent
+								@endforeach
 							</div>
 							<div class="row-6 px-0 pt-3">
 								<h5>3er Puesto</h5>
-								@component('layouts.partials.score-card',['partido' => $tercero])
-								@endcomponent
+								@foreach ($tercero as $ter)
+									@component('layouts.partials.score-card',['partido' => $ter])
+									@endcomponent
+								@endforeach
 							</div>	
 						</div>
 					</div>

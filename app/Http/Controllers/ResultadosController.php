@@ -29,6 +29,7 @@ class ResultadosController extends Controller
                 'final'  => $final,
             ]
         );
+       
     }
 
     public function partidos(){
