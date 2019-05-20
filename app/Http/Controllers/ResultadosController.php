@@ -16,5 +16,14 @@ class ResultadosController extends Controller
 	public function eliminatoria(){
     	$partidos = Partido::eliminatoria()->get();
     	return view('resultados.eliminatoria', compact($partidos));
-    }    
+    }
+
+    public function partidos(){
+    	$partidos = Partido::all()->slice(0,18);
+        //return $partidos;//para probar 
+    	return view('resultados.partidos', ['partidos'=>$partidos  ]);
+    }  
 }
+
+
+

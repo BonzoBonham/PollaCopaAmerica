@@ -10,7 +10,7 @@
     <div class="container p-0">
       <div class="row p-0">
         <div class="col-3">
-           <img src="{{ asset($bandera) }}" class="m-0 d-flex align-self-start  mw-100" alt="">
+            <img src="{{ asset($bandera) }}" class="m-0 d-flex align-self-start  mw-100" alt="">
         </div>
         <div class="col-8">
           {{$nombre}}

@@ -13,16 +13,24 @@
   <div class="card-body text-primary bg-light">
       <div class="container-fluid">
         @foreach ($equipos as $equipo)
+          @php
+            $win = 1;
+            $lost = 1; 
+            $tie = 1;
+            $pts = 3*$win + $tie;
+            $diff ='+4';
+          @endphp
+
            @component('layouts.partials.row-data', 
            [
             'index' => $loop->iteration,
             'nombre' => $equipo->nombre,
             'bandera' => $equipo->bandera,
-            'win'  => '2',
-            'lost'  => '1',
-            'tie'  =>  '1',
-            'pts' => '3', 
-            'diff' => '+4', 
+            'win'  => $win,
+            'lost'  => $lost,
+            'tie'  =>  $tie,
+            'pts' => $pts, 
+            'diff' => $diff, 
             ])
            @endcomponent
         @endforeach

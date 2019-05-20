@@ -16,17 +16,17 @@ Route::get('/', function () {
 });
 Route::get('/grupos/{grupo}','ResultadosController@grupos');
 Route::get('/eliminatoria','ResultadosController@eliminatoria');
-
+Route::get('/partidos','ResultadosController@partidos');
 
 Auth::routes();
 	
-Route::get('/lahome', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/equipos','equiposController');
 Route::get('/apuestas','equiposController@index')->name('apuestas');
 
 // Route::resource('/equipos', 'EquipoController');
 
-Route::resource('/partidos', 'PartidoController');
+//Route::resource('/partidos', 'PartidoController');
 
 Route::resource('/user', 'UserController');
