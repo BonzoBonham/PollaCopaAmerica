@@ -14,6 +14,10 @@
 Route::get('/', function () {
     return view('home.index');
 });
+Route::get('/test', function () {
+    return view('test');
+});
+
 Route::get('/grupos/{grupo}','ResultadosController@grupos');
 Route::get('/eliminatoria','ResultadosController@eliminatoria');
 Route::get('/partidos','ResultadosController@partidos');
