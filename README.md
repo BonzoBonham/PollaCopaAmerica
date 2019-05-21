@@ -60,8 +60,30 @@ para correr el proyecto:
  ```
  php artisan serve
  ```
-
-
+ para correr las migraciones y popular tablas con los seeders:
+ ```
+ php artisan jornada:run 0
+ ```
+ para llenar la mitad de partidos con sus resultados:
+ ```
+ php artisan jornada:run 1
+ ```
+ para completar la fase de grupos:
+ ```
+ php artisan jornada:run 2
+ ```
+ para cuartos de final:
+ ```
+ php artisan jornada:run 3
+ ```
+ para semifinales:
+ ```
+ php artisan jornada:run 4
+ ```
+ para la finales y el 3er puesto:
+ ```
+ php artisan jornada:run 5
+ ```
 
 ## Recursos
 * laracast | [https://laracasts.com](https://laracasts.com)
