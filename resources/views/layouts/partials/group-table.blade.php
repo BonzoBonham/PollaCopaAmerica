@@ -12,12 +12,13 @@
     </div>
   <div class="card-body text-primary bg-light">
       <div class="container-fluid">
-        @foreach ($equipos as $equipo)
-          @php
+        @php
+          $grupo = array();
+          foreach ($equipos as $equipo) {
             $win = 0;
             $gf = 0;
             $gc = 0;
-           
+            $data = array();
 
             foreach ($equipo->partidosFaseGrupos as $partido) {
               $gf += $partido->pivot->goles;
@@ -25,28 +26,37 @@
                 $gc += $rival->pivot->goles;
               }
             }
-             $dif = $gf - $gc;
-          
-            $win = $equipo->partidosFaseGruposGanados->count();
-            $lost = $equipo->partidosFaseGruposPerdidos->count(); 
-            $tie = $equipo->partidosFaseGruposEmpatados->count();
-            $pts = 3*$win + $tie;
-            $diff =( $dif > 0) ?  '+'.$dif : $dif;
+            $dif = $gf - $gc;
 
-
-       
-          @endphp
-
+            $data['nombre'] = $equipo->nombre;          
+            $data['win'] = $equipo->partidosFaseGruposGanados->count();
+            $data['lost'] = $equipo->partidosFaseGruposPerdidos->count(); 
+            $data['tie'] = $equipo->partidosFaseGruposEmpatados->count();
+            $data['bandera'] = $equipo->bandera;
+            $data['pts'] = 3*$data['win'] + $data['tie'];
+            $data['udif'] = $gf - $gc;
+            $data['diff']=( $dif > 0) ?  $dif : $dif;
+            array_push($grupo, $data);
+          }
+          function sort_data($element1, $element2) { 
+            $w1 = $element1['pts']-0.01*$element1['udif']; 
+            $w2 = $element2['pts']-0.01*$element1['udif']; 
+            return -($w1 - $w2); 
+          }  
+          usort($grupo, 'sort_data'); 
+                      
+      @endphp
+        @foreach ($grupo as $equipo)
            @component('layouts.partials.row-data', 
            [
             'index' => $loop->iteration,
-            'nombre' => $equipo->nombre,
-            'bandera' => $equipo->bandera,
-            'win'  => $win,
-            'lost'  => $lost,
-            'tie'  =>  $tie,
-            'pts' => $pts, 
-            'diff' => $diff, 
+            'nombre' => $equipo['nombre'],
+            'bandera' => $equipo['bandera'],
+            'win'  => $equipo['win'],
+            'lost'  => $equipo['lost'],
+            'tie'  =>  $equipo['tie'],
+            'pts' => $equipo['pts'], 
+            'diff' => $equipo['diff'],
             ])
            @endcomponent
         @endforeach
