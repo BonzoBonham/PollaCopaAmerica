@@ -13,8 +13,8 @@ class PartidosTableSeeder extends Seeder
      */
     public function run()
     {
-      $this->partidosFaseDeGrupos();
-      $this->partidosFaseDeEliminacion();
+        $this->partidosFaseDeGrupos();
+        $this->partidosFaseDeEliminacion();
     }
 
     public function partidosFaseDeEliminacion(){
@@ -23,18 +23,18 @@ class PartidosTableSeeder extends Seeder
          for ($i=0; $i < 4; $i++) { 
             for ($j=0; $j < $ppr[$i] ; $j++) { 
                 $partido = factory(App\Partido::class)->states($rondas[$i])->create();
-                DB::table('equipo_partido')->insert(
-                    [
-                        'partido_id' => $partido->id,
-                        'equipo_id' => rand(1, 12)
-                    ]
-                );
-                DB::table('equipo_partido')->insert(
-                    [
-                        'partido_id' => $partido->id,
-                        'equipo_id' => rand(1, 12)
-                    ]
-                );
+                // DB::table('equipo_partido')->insert(
+                //     [
+                //         'partido_id' => $partido->id,
+                //         'equipo_id' => rand(1, 12)
+                //     ]
+                // );
+                // DB::table('equipo_partido')->insert(
+                //     [
+                //         'partido_id' => $partido->id,
+                //         'equipo_id' => rand(1, 12)
+                //     ]
+                // );
             }
          }
     }

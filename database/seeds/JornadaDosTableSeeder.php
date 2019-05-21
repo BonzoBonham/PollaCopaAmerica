@@ -43,8 +43,8 @@ class JornadaDosTableSeeder extends Seeder
     						->where('partido_id', $partidoId)
     						->get()
     						->toArray();
-    	$e1g = rand(0,6)-1;
-    	$e2g = rand(0,6)+1;
+    	$e1g = rand(0,6);
+    	$e2g = rand(0,6);
     	if ( $e1g === $e2g) {
 	    	$this->updatePartido($partidoId,$equiposIds[0]->equipo_id, $e1g ,2);
 	    	$this->updatePartido($partidoId,$equiposIds[1]->equipo_id, $e2g ,2);
@@ -66,7 +66,7 @@ class JornadaDosTableSeeder extends Seeder
     		->update(
     			[
     				'goles' => $goles ,
-    				'ganador' => $ganador
+    				'ganador' => $ganador,
     			]
     		);
     }

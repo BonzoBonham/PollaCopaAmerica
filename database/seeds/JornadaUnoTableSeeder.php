@@ -34,11 +34,11 @@ class JornadaUnoTableSeeder extends Seeder
     {
     	$equiposIds = DB::table('equipo_partido')
     						->select('equipo_id')
-    						->where('partido_id', $partidoId)
+    						->where('partido_id', $partidoId+1)
     						->get()
     						->toArray();
-    	$e1g = rand(0,6)-1;
-    	$e2g = rand(0,6)+1;
+    	$e1g = rand(0,6);
+    	$e2g = rand(0,6);
     	if ( $e1g === $e2g) {
 	    	$this->updatePartido($partidoId,$equiposIds[0]->equipo_id, $e1g ,2);
 	    	$this->updatePartido($partidoId,$equiposIds[1]->equipo_id, $e2g ,2);
