@@ -19,6 +19,7 @@ class CreatePartidosTable extends Migration
             $table->string('resultado')->nullable();
             $table->string('lugar')->nullable();
             $table->string('descripcion')->nullable();
+            $table->boolean('terminado')->default(0);
             $table->timestamps();
         });
     }

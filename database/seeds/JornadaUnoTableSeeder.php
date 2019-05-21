@@ -22,6 +22,9 @@ class JornadaUnoTableSeeder extends Seeder
     	$partidosId = range(0, 18);
     	shuffle($partidosId);
     	for ($i=0; $i < 9; $i++) { 
+            DB::table('partidos')
+            ->where('id',$partidosId[$i])
+            ->update(['terminado' => 1]);
     		$this->resultadosDelPartido($partidosId[$i]);
     	}
     }
