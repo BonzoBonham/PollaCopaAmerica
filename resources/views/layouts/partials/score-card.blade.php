@@ -1,7 +1,9 @@
 <div class="card bg-secondary mb-3" style="max-width: 25rem;">
-	@if (empty($partido->equipos))
-		@foreach ($partido->equipos as $equipo)
-			<div class="card-header">
+	@php
+		$elements = 0
+	@endphp
+	@foreach ($partido->equipos as $equipo)
+		<div class="card-header">
 				<div class="container">
 					<div class="row">
 						<div class="col-8">
@@ -22,9 +24,11 @@
 					</div>
 				</div>
 			</div>
-		@endforeach
-	@else
-		@for ($i = 0; $i < 2 ; $i++)
+			@php
+				$elements = $elements +1;
+			@endphp
+	@endforeach
+	@while($elements < 2 )
 			<div class="card-header">
 				<div class="container">
 					<div class="row">
@@ -40,8 +44,10 @@
 					</div>
 				</div>
 			</div>
-		@endfor
-	@endif
+			@php
+				$elements = $elements +1;
+			@endphp
+	@endwhile
 
 		
 	

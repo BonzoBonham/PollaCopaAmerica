@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Partido;
 use App\Equipo;
+use App\Events\PartidoTerminado;
 
 class JornadaDosTableSeeder extends Seeder
 {
@@ -58,6 +59,8 @@ class JornadaDosTableSeeder extends Seeder
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
+        $partido = Partido::find($partidoId);
+        event(new PartidoTerminado($partido));
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],

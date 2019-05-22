@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Partido;
-use App\Equipo; v
+use App\Equipo;
+use App\Events\PartidoTerminado;
 
 class FinalTableSeeder extends Seeder
 {
@@ -14,23 +15,22 @@ class FinalTableSeeder extends Seeder
     public function run()
     {
         $this->actualizarFinal();
-        $this->actualizarCuartos();
     }
     public function actualizarFinal()
     {
     	$cuartos = App\Partido::fase(5)->get('id')->toArray();
-		$this->actualizarPartido($cuartos[$i]->id);
+		$this->actualizarPartido($cuartos[0]['id']);
     }
     public function actualizarTercero()
     {
     	$cuartos = App\Partido::fase(4)->get('id')->toArray();
-		$this->actualizarPartido($cuartos[$i]->id);
+		$this->actualizarPartido($cuartos[0]['id']);
     }
     public function actualizarPartido($partidoId)
     {
     	$equiposIds = DB::table('equipo_partido')
     						->select('equipo_id')
-    						->where('partido_id', $partidoId+1)
+    						->where('partido_id', $partidoId)
     						->get()
     						->toArray();
     	$e1g = rand(0,6);
@@ -48,6 +48,8 @@ class FinalTableSeeder extends Seeder
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
+        $partido = Partido::findOrFail($partidoId);
+        event(new PartidoTerminado($partido));
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],

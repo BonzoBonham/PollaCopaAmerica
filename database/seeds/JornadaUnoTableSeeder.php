@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Partido;
 use App\Equipo;
+use App\Events\PartidoTerminado;
 
 class JornadaUnoTableSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class JornadaUnoTableSeeder extends Seeder
 
  	public function actualizarPartidos()
     {
-    	$partidosId = range(0, 18);
+    	$partidosId = range(1, 18);
     	shuffle($partidosId);
     	for ($i=0; $i < 9; $i++) { 
             DB::table('partidos')
@@ -34,7 +35,7 @@ class JornadaUnoTableSeeder extends Seeder
     {
     	$equiposIds = DB::table('equipo_partido')
     						->select('equipo_id')
-    						->where('partido_id', $partidoId+1)
+    						->where('partido_id', $partidoId)
     						->get()
     						->toArray();
     	$e1g = rand(0,6);
@@ -52,6 +53,8 @@ class JornadaUnoTableSeeder extends Seeder
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
+        $partido = Partido::findOrFail($partidoId);
+        event(new PartidoTerminado($partido));
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],

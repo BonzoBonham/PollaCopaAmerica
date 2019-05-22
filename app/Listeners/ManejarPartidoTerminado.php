@@ -5,8 +5,11 @@ namespace App\Listeners;
 use App\Events\PartidoTerminado;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\DB;
 
-use App\Partidos;
+use App\Partido;
+use App\Equipo;
+
 
 class manejarPartidoTerminado
 {
@@ -30,19 +33,19 @@ class manejarPartidoTerminado
     {
         $partido = $event->partido;
         $terminado = $partido->terminado;
-        $fase = $partido->partido->fase; 
+        $fase = $partido->fase; 
         if($terminado){
             if ($fase>1) {
                 $this->partidoFaseDeEliminatoria();
             } else {
-                $this->partidoFaseDeGrupo();
+                $this->partidoFaseDeGrupos($partido->id);
             }
         }
         return false;
     }
     public function partidoFaseDeEliminatoria($partidoId, $fase)
     {
-        $partido= App\Partido::find($partidoId);
+        $partido= Partido::find($partidoId);
         $equiposIds = $partido->equipos->pluck('id');
         $pivotArray = array();
         foreach($partido->equipos as $equipo){
@@ -76,68 +79,143 @@ class manejarPartidoTerminado
     }
     public function partidoFaseDeGrupos($partidoId)
     {
-        $grupo = App\Partido::find($partidoId)->equipos->first()->grupo;
-        $equipos = App\Equipos::grupo($grupo);
-        
+        $grupo = Partido::find($partidoId)->equipos->first()->grupo;
+        $equipos = Equipo::grupo($grupo);
+
         $aDone = $this->verificarFaseDeGruposTerminada('A');
         $bDone = $this->verificarFaseDeGruposTerminada('B');
         $cDone = $this->verificarFaseDeGruposTerminada('C');
         $myGroupDone = $this->verificarFaseDeGruposTerminada($grupo);
+
         if($myGroupDone){
-                #determinar quien quedo en la primera posicion 
-
+            #determinar quien quedo en la prime-ra posicion 
+            $tabla = $this->generarTablaGrupo($equipos);
+            $this->asignarCuartos($grupo, 1, $tabla[0]['id']);
+            $this->asignarCuartos($grupo, 2, $tabla[1]['id']);
             if($aDone && $bDone && $cDone){
-
+                $mejor3 = $this->generarMejorTercero();
+                $this->asignarCuartos($grupo, 3, $tabla[0]['id']);
+                $this->asignarCuartos($grupo, 4, $tabla[1]['id']);
             }
         }
-
-
-
-
     }
+    public function generarMejorTercero()
+    {
+       $tablaTerceros = array();
+       $tablaA = $this->generarTablaGrupo(Equipo::grupo('A'));
+       $tablaB = $this->generarTablaGrupo(Equipo::grupo('B'));
+       $tablaC = $this->generarTablaGrupo(Equipo::grupo('C'));
+       array_push($tablaTerceros,$tablaA[2]);
+       array_push($tablaTerceros,$tablaB[2]);
+       array_push($tablaTerceros,$tablaC[2]);
+       usort($grupo, function ($a, $b) { 
+            $w1 = $a['pts']+0.01*$a['udif']; 
+            $w2 = $a['pts']+0.01*$b['udif']; 
+            return -($w1 - $w2);
+        }); 
+       return $tablaTerceros;
+    }
+
+
+
     public function verificarFaseDeGruposTerminada($grupo)
     {
-        $equipos = App\Equipos::grupo($grupo);
+        $equipos = Equipo::grupo($grupo);
+
         $terminado = true;
-        foreach ($equipos as $equipo) {
+        foreach ($equipos->get() as $equipo) {
            foreach ($equipo->partidos as $partido) {
-               $terminado &= $partido->terminado;
+               $terminado &= boolval($partido->terminado);
            }
         }
         return $terminado;
     }
-    public function asignarCuartos()
+    public function asignarCuartos($grupo, $pos, $equipoID)
     {
-        switch ($grupo) {
-            case 'A':
-                # code...
+        switch ($pos) {
+            case 1:
+                $this->asignarCuartosPorGrupos($grupo,$equipoID,19,21,22);
                 break;
-            case 'B':
-                # code...
+            case 2:
+                $this->asignarCuartosPorGrupos($grupo,$equipoID,20,20,21);
                 break;
-            case 'C':
-                # code...
+            case 3:
+                 $this->generarPartido(19,$equipoId);
                 break;
-            
+            case 4:
+                $this->generarPartido(22,$equipoId);
+                break;
             default:
                 # code...
                 break;
         }
     }
+    public function asignarCuartosPorGrupos($grupo, $equipoId, $a,$b,$c)
+    {
+        switch ($grupo) {
+            case 'A':
+                $this->generarPartido($a,$equipoId);
+                break;
+            case 'B':
+                $this->generarPartido($b,$equipoId);
+                break;
+            case 'C':
+                $this->generarPartido($c,$equipoId);
+                break;
+            default:
+                # code...
+                break;
+        }
+        
+    }
 
     public function generarPartido($partidoId,$equipoId)
+    { 
+      $partido = Partido::findOrFail($partidoId);
+      $partido->equipos()->attach($equipoId);
+      info('new match created sucessfully');
+    }
+
+    public function generarTablaGrupo($equipos)
     {
-       DB::table('equipo_partido')->insert(
-                [
-                    'partido_id' => $partidoId,
-                    'equipo_id' => $equipoId
-                ]
-            );
+         $grupo = array();
+
+          foreach ($equipos->get() as $equipo) {
+            $win = 0;
+            $gf = 0;
+            $gc = 0;
+            $data = array();
+
+            foreach ($equipo->partidosFaseGrupos as $partido) {
+              $gf += $partido->pivot->goles;
+              foreach ($partido->equipos->where('id', '!=', $equipo->id) as $rival){
+                $gc += $rival->pivot->goles;
+              }
+            }
+            $dif = $gf - $gc;
+
+            $data['id'] = $equipo->id;          
+            $data['win'] = $equipo->partidosFaseGruposGanados->count();
+            $data['tie'] = $equipo->partidosFaseGruposEmpatados->count();
+            $data['pts'] = 3*$data['win'] + $data['tie'];
+            $data['udif'] = $gf - $gc;
+            array_push($grupo, $data);
+
+          }
+
+          usort($grupo, function ($a, $b) { 
+            $w1 = $a['pts']+0.01*$a['udif']; 
+            $w2 = $a['pts']+0.01*$b['udif']; 
+            return -($w1 - $w2);
+          }); 
+          return $grupo;
+
     }
 
 }
 
 
+ 
 
 
 

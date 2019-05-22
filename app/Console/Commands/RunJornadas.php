@@ -68,7 +68,7 @@ class RunJornadas extends Command
             case 4:
                  $this->info('corriendo la jornadade semifinales...');
                  $this->call('db:seed', [
-                     '--class' => 'SemisTableSeeder '
+                     '--class' => 'SemisTableSeeder'
                 ]);
                  break;
              case 5:

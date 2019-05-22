@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Partido;
 use App\Equipo;
+use App\Events\PartidoTerminado;
 
 class CuartosTableSeeder extends Seeder
 {
@@ -13,14 +14,14 @@ class CuartosTableSeeder extends Seeder
      */
     public function run()
     {
-        %this->actualizarCuartos();
+        $this->actualizarCuartos();
     }
 
     public function actualizarCuartos()
     {
     	$cuartos = App\Partido::fase(2)->get('id')->toArray();
     	for ($i=0; $i < 4; $i++) { 
-    		$this->actualizarPartido($cuartos[$i]->id);
+    		$this->actualizarPartido($cuartos[$i]['id']);
     	}
     }
     public function actualizarPartido($partidoId)
@@ -45,6 +46,8 @@ class CuartosTableSeeder extends Seeder
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
+        $partido = Partido::findOrFail($partidoId);
+        event(new PartidoTerminado($partido));
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],
