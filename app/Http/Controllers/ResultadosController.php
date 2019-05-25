@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Equipo;
 use App\Partido;
 
 class ResultadosController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function grupos($grupo){
     	$equipos = Equipo::grupo($grupo)->get();
         // $equipo =  Equipo::grupo('A')->first();

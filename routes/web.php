@@ -27,10 +27,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/equipos','equiposController');
-Route::get('/apuestas','equiposController@index')->name('apuestas');
-
-// Route::resource('/equipos', 'EquipoController');
-
-//Route::resource('/partidos', 'PartidoController');
 
 Route::resource('/user', 'UserController');
+
+Route::GET('/partidos','ResultadosController@partidos');
+
+Route::GET('/eliminatoria','ResultadosController@eliminatoria');
+
+Route::GET('/grupos/{grupo}','ResultadosController@grupos')->name('resultados.grupos');
