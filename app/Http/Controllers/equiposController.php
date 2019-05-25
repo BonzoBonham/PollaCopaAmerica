@@ -22,8 +22,15 @@ class equiposController extends Controller
      */
     public function index()
     {
+        $usuario=User::find(Auth::user()->id);
+        // equipoUser puede ser null
+        $equipoUser = $usuario->equipo;
+        
     	$equipos=Equipo::all();
-        return view('apuestas',compact('equipos'));
+        return view('apuestas', [
+            'equipos' => $equipos,
+            'equipoUser' =>$equipoUser
+        ]);
     }
 
     /**
