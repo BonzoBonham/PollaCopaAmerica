@@ -18,17 +18,11 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/grupos/{grupo}','ResultadosController@grupos');
-Route::get('/eliminatoria','ResultadosController@eliminatoria');
-Route::get('/partidos','ResultadosController@partidos');
-
 Auth::routes();
 	
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/equipos','equiposController');
-
-Route::resource('/user', 'UserController');
 
 Route::GET('/partidos','ResultadosController@partidos');
 
