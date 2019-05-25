@@ -19,16 +19,19 @@ class SemisTableSeeder extends Seeder
     }
     public function actualizarSemis()
     {
-    	$cuartos = App\Partido::fase(3)->get('id')->toArray();
+    	$semis = App\Partido::fase(3)->get('id')->toArray();
     	for ($i=0; $i < 2; $i++) { 
-    		$this->actualizarPartido($cuartos[$i]['id']);
+             DB::table('partidos')
+            ->where('id',$semis[$i]['id'])
+            ->update(['terminado' => 1]);
+    		$this->actualizarPartido($semis[$i]['id']);
     	}
     }
     public function actualizarPartido($partidoId)
     {
     	$equiposIds = DB::table('equipo_partido')
     						->select('equipo_id')
-    						->where('partido_id', $partidoId+1)
+    						->where('partido_id', $partidoId)
     						->get()
     						->toArray();
     	$e1g = rand(0,6);

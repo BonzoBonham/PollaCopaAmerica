@@ -21,6 +21,9 @@ class CuartosTableSeeder extends Seeder
     {
     	$cuartos = App\Partido::fase(2)->get('id')->toArray();
     	for ($i=0; $i < 4; $i++) { 
+             DB::table('partidos')
+            ->where('id',$cuartos[$i]['id'])
+            ->update(['terminado' => 1]);
     		$this->actualizarPartido($cuartos[$i]['id']);
     	}
     }
@@ -28,7 +31,7 @@ class CuartosTableSeeder extends Seeder
     {
     	$equiposIds = DB::table('equipo_partido')
     						->select('equipo_id')
-    						->where('partido_id', $partidoId+1)
+    						->where('partido_id', $partidoId)
     						->get()
     						->toArray();
     	$e1g = rand(0,6);

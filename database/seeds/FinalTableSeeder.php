@@ -48,8 +48,7 @@ class FinalTableSeeder extends Seeder
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
-        $partido = Partido::findOrFail($partidoId);
-        event(new PartidoTerminado($partido));
+     
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],
@@ -61,5 +60,7 @@ class FinalTableSeeder extends Seeder
     				'ganador' => $ganador
     			]
     		);
+        $partido = Partido::findOrFail($partidoId);
+        event(new PartidoTerminado($partido));
     }
 }
