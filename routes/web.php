@@ -29,3 +29,5 @@ Route::GET('/partidos','ResultadosController@partidos');
 Route::GET('/eliminatoria','ResultadosController@eliminatoria');
 
 Route::GET('/grupos/{grupo}','ResultadosController@grupos')->name('resultados.grupos');
+
+Route::GET('/usuarios_ganadores','UsuariosGanadoresController@index');

@@ -18,7 +18,7 @@ $factory->define(Partido::class, function (Faker $faker) {
 
     return [
     	'fase' => $faker->numberBetween(1,4),
-        'resultado' => $faker->randomDigit, 
+        // 'resultado' => $faker->randomDigit, 
         'lugar' => $faker->randomElement($lugares) ,
         'descripcion' => $faker->sentence(12) , 
 

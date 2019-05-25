@@ -16,7 +16,6 @@ class CreatePartidosTable extends Migration
         Schema::create('partidos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('fase')->unsigned();
-            $table->string('resultado')->nullable();
             $table->string('lugar')->nullable();
             $table->string('descripcion')->nullable();
             $table->boolean('terminado')->default(0);
