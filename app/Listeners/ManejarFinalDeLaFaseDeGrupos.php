@@ -32,6 +32,7 @@ class ManejarFinalDeLaFaseDeGrupos
     {
         
                 $mejor3 = $this->generarMejorTercero();
+                dump($mejor3[0], $mejor3[1]);
                 $this->asignarCuartos(3, $mejor3[0]['id']);
                 $this->asignarCuartos( 4, $mejor3[1]['id']);
     }

@@ -48,7 +48,6 @@ class FinalTableSeeder extends Seeder
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
-     
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],

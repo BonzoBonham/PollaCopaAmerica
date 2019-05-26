@@ -34,6 +34,8 @@ class CuartosTableSeeder extends Seeder
     						->where('partido_id', $partidoId)
     						->get()
     						->toArray();
+
+        dd($equiposIds);
     	$e1g = rand(0,6);
     	$e2g = rand(0,6);
     	if ( $e1g === $e2g) {
@@ -49,8 +51,6 @@ class CuartosTableSeeder extends Seeder
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
-        $partido = Partido::findOrFail($partidoId);
-        event(new PartidoTerminado($partido));
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],
@@ -62,5 +62,7 @@ class CuartosTableSeeder extends Seeder
     				'ganador' => $ganador
     			]
     		);
+            $partido = Partido::findOrFail($partidoId);
+            event(new PartidoTerminado($partido));
     }
 }
