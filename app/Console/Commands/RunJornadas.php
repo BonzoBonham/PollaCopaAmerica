@@ -12,7 +12,7 @@ class RunJornadas extends Command
      *
      * @var string
      */
-    protected $signature = 'jornada:run {num}';
+    protected $signature = 'jornada:run';
 
     /**
      * The console command description.
@@ -38,50 +38,46 @@ class RunJornadas extends Command
      */
     public function handle()
     {
-         $jornadaId = $this->argument('num');
-         switch ($jornadaId) {
-             case 0:
-                $this->info('migrando y populando las tablas...');
-                $this->call('migrate:refresh');
-                $this->call('db:seed', [
-                     '--class' => 'DatabaseSeeder'
-                ]);
-                 break;
-            case 1:
-                $this->info('corriendo la 1era jornada...');
+         if ($this->confirm('Deseas migrar y popular las tablas ...? ')) {
+            $this->info('migrando y populando las tablas...');
+            $this->call('migrate:refresh');
+            $this->call('db:seed', [
+                '--class' => 'DatabaseSeeder'
+            ]);
+         }
+
+         if ($this->confirm('Deseas correr la 1era Jornada ...? ')) {
+            $this->info('corriendo la 1era jornada...');
                 $this->call('db:seed', [
                      '--class' => 'JornadaUnoTableSeeder'
                 ]);
-                 break;
-            case 2:
-                $this->info('corriendo la 2nda jornada...');
-                $this->call('db:seed', [
-                     '--class' => 'JornadaDosTableSeeder'
-                ]);
-                    event(new FinalDeLaFaseDeGrupos());
-                 break;
+         }
 
-            case 3:
-                $this->info('corriendo la jornada de cuartos de final...');
-                $this->call('db:seed', [
-                    '--class' => 'CuartosTableSeeder'
-                ]);
-                 break;
-            case 4:
-                 $this->info('corriendo la jornadade semifinales...');
-                 $this->call('db:seed', [
-                     '--class' => 'SemisTableSeeder'
-                ]);
-                 break;
-             case 5:
-                $this->info('corriendo la jornada de la final...');
-                $this->call('db:seed', [
-                     '--class' => 'FinalTableSeeder'
-                ]);
-                 break;
-             default:
-                 # code...
-                 break;
+        if ($this->confirm('Deseas correr la 2nda Jornada ...? ')) {
+            $this->info('corriendo la 1era jornada...');
+            $this->call('db:seed', [
+                '--class' => 'JornadaDosTableSeeder'
+            ]);
+            event(new FinalDeLaFaseDeGrupos());
+         }
+        if ($this->confirm('Deseas correr la Jornada de cuartos de final ...? ')) {
+            $this->info('corriendo la jornada de cuartos de final...');
+            $this->call('db:seed', [
+                '--class' => 'CuartosTableSeeder'
+            ]);
+         }
+        if ($this->confirm('Deseas correr la Jornada de semifinales ...? ')) {
+            $this->info('corriendo la jornadade semifinales...');
+            $this->call('db:seed', [
+                '--class' => 'SemisTableSeeder'
+            ]);
+         }
+
+         if ($this->confirm('Deseas correr la final y el 3er puesto ...? ')) {
+            $this->info('corriendo la jornada de la final...');
+            $this->call('db:seed', [
+                '--class' => 'FinalTableSeeder'
+            ]);
          }
     }
 }
