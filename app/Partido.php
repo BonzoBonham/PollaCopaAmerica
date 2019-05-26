@@ -8,11 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Partido extends Model
 {
 
-    protected $dispatchesEvents = [
-        'updated' => PartidoTerminado::class,
-    ];
-
-
     public function equipos() {
         return $this->belongsToMany('App\Equipo')->withPivot('goles', 'ganador')->withTimestamps();
     }

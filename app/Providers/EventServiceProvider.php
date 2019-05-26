@@ -21,8 +21,11 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\PartidoTerminado' => [
             'App\Listeners\ManejarPartidoTerminado',
         ],
-        'App\Events\GandorDelToneo' => [
-            'App\Listeners\ManejarGandorDelToneo',
+        'App\Events\FinalDeLaFaseDeGrupos' => [
+            'App\Listeners\ManejarFinalDeLaFaseDeGrupos',
+        ],
+        'App\Events\GanadorDelTorneo' => [
+            'App\Listeners\ManejarGanadorDelTorneo',
         ],
     ];
 

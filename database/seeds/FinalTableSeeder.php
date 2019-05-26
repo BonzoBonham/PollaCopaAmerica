@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 use App\Partido;
 use App\Equipo;
 use App\Events\PartidoTerminado;
+use App\Events\GanadorDelTorneo;
+
 
 class FinalTableSeeder extends Seeder
 {
@@ -18,15 +20,17 @@ class FinalTableSeeder extends Seeder
     }
     public function actualizarFinal()
     {
-    	$cuartos = App\Partido::fase(5)->get('id')->toArray();
-		$this->actualizarPartido($cuartos[0]['id']);
+    	$final = App\Partido::fase(5)->get('id')->toArray();
+		$this->actualizarPartido($final[0]['id'], true);
+        
     }
+
     public function actualizarTercero()
     {
-    	$cuartos = App\Partido::fase(4)->get('id')->toArray();
-		$this->actualizarPartido($cuartos[0]['id']);
+    	$tercero = App\Partido::fase(4)->get('id')->toArray();
+		$this->actualizarPartido($tercero[0]['id'], false);
     }
-    public function actualizarPartido($partidoId)
+    public function actualizarPartido($partidoId, $final)
     {
     	$equiposIds = DB::table('equipo_partido')
     						->select('equipo_id')
@@ -38,18 +42,29 @@ class FinalTableSeeder extends Seeder
     	if ( $e1g === $e2g) {
 	    	$this->updatePartido($partidoId,$equiposIds[0]->equipo_id, $e1g ,2);
 	    	$this->updatePartido($partidoId,$equiposIds[1]->equipo_id, $e2g ,2);
+            $this->emitGanadorDelTorneo($equiposIds[0]->equipo_id, $final);
     	}elseif($e1g > $e2g){
     		$this->updatePartido($partidoId,$equiposIds[0]->equipo_id, $e1g ,1);
 	    	$this->updatePartido($partidoId,$equiposIds[1]->equipo_id, $e2g ,0);
+            $this->emitGanadorDelTorneo($equiposIds[0]->equipo_id, $final);
     	}else{
     		$this->updatePartido($partidoId,$equiposIds[0]->equipo_id, $e1g ,0);
 	    	$this->updatePartido($partidoId,$equiposIds[1]->equipo_id, $e2g ,1);
+            $this->emitGanadorDelTorneo($equiposIds[1]->equipo_id, $final);
     	}
+
+
+    }
+
+    public function emitGanadorDelTorneo($equipoId, $final)
+    {
+       if ($final) {
+        $equipo = Equipo::find($equipoId);
+        event(new GanadorDelTorneo($equipo));
+       }
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
-        $partido = Partido::findOrFail($partidoId);
-        event(new PartidoTerminado($partido));
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],

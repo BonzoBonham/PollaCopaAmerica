@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Events\FinalDeLaFaseDeGrupos;
 
 class RunJornadas extends Command
 {
@@ -57,6 +58,7 @@ class RunJornadas extends Command
                 $this->call('db:seed', [
                      '--class' => 'JornadaDosTableSeeder'
                 ]);
+                    event(new FinalDeLaFaseDeGrupos());
                  break;
 
             case 3:

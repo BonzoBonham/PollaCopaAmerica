@@ -39,6 +39,7 @@ class JornadaDosTableSeeder extends Seeder
 
     public function resultadosDelPartido($partidoId)
     {
+
     	$equiposIds = DB::table('equipo_partido')
     						->select('equipo_id')
     						->where('partido_id', $partidoId)
@@ -59,8 +60,6 @@ class JornadaDosTableSeeder extends Seeder
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
-        $partido = Partido::find($partidoId);
-        event(new PartidoTerminado($partido));
     	DB::table('equipo_partido')
     		->where([
     			['partido_id','=',$partidoId],
@@ -72,6 +71,8 @@ class JornadaDosTableSeeder extends Seeder
     				'ganador' => $ganador,
     			]
     		);
+            $partido = Partido::findOrFail($partidoId);
+            event(new PartidoTerminado($partido));
     }
 
 }

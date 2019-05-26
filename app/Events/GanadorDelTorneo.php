@@ -10,18 +10,22 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class GandorDelToneo
+use App\Equipo;
+
+class GanadorDelTorneo
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+
+    public $equipo;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( Equipo $equipo )
     {
-        //
+        $this->equipo = $equipo;
     }
 
     /**

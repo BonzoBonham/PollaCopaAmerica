@@ -33,10 +33,10 @@ class manejarPartidoTerminado
     {
         $partido = $event->partido;
         $terminado = $partido->terminado;
-        $fase = $partido->fase; 
+        $fase = $partido->fase;
         if($terminado){
             if ($fase>1) {
-                $this->partidoFaseDeEliminatoria();
+                $this->partidoFaseDeEliminatoria($partido->id, $fase);
             } else {
                 $this->partidoFaseDeGrupos($partido->id);
             }
@@ -61,12 +61,16 @@ class manejarPartidoTerminado
         
         switch ($fase) {
             case 2:
-                $nextMatch = ($partidoId == 18 ||$partidoId == 19 ) ? 23:24;
-                $this->generarPartido($nextMatch, $ganador);
+                  $nextMatch = ($partidoId == 19 || $partidoId == 20 ) ? 23:24;
+                  $partido = Partido::findOrFail($nextMatch);
+                  $exists =  $partido->equipos()->where('id',$partidoId)->exists();
+                  if(!$exists){
+                  $this->generarPartido($nextMatch, $ganador);
+                }
                 break;
             case 3:
                 $this->generarPartido(26,$ganador);
-                $this->generarPartido(26,$perdedor);
+                $this->generarPartido(25,$perdedor);
                 break;
              case 5:
                 # generar evento de ganador de torneo
@@ -81,10 +85,6 @@ class manejarPartidoTerminado
     {
         $grupo = Partido::find($partidoId)->equipos->first()->grupo;
         $equipos = Equipo::grupo($grupo);
-
-        $aDone = $this->verificarFaseDeGruposTerminada('A');
-        $bDone = $this->verificarFaseDeGruposTerminada('B');
-        $cDone = $this->verificarFaseDeGruposTerminada('C');
         $myGroupDone = $this->verificarFaseDeGruposTerminada($grupo);
 
         if($myGroupDone){
@@ -92,13 +92,9 @@ class manejarPartidoTerminado
             $tabla = $this->generarTablaGrupo($equipos);
             $this->asignarCuartos($grupo, 1, $tabla[0]['id']);
             $this->asignarCuartos($grupo, 2, $tabla[1]['id']);
-            if($aDone && $bDone && $cDone){
-                $mejor3 = $this->generarMejorTercero();
-                $this->asignarCuartos($grupo, 3, $tabla[0]['id']);
-                $this->asignarCuartos($grupo, 4, $tabla[1]['id']);
-            }
         }
     }
+    
     public function generarMejorTercero()
     {
        $tablaTerceros = array();
@@ -172,7 +168,11 @@ class manejarPartidoTerminado
     public function generarPartido($partidoId,$equipoId)
     { 
       $partido = Partido::findOrFail($partidoId);
-      $partido->equipos()->attach($equipoId);
+      $exists =  $partido->equipos()->where('id',$partidoId)->exists();
+      if(!$exists){
+        $partido->equipos()->attach($equipoId);
+      }
+      
       info('new match created sucessfully');
     }
 
