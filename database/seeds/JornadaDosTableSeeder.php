@@ -71,6 +71,8 @@ class JornadaDosTableSeeder extends Seeder
     				'ganador' => $ganador,
     			]
     		);
+            $partido = Partido::findOrFail($partidoId);
+            event(new PartidoTerminado($partido));
     }
 
 }
