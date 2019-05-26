@@ -205,7 +205,7 @@ class manejarPartidoTerminado
 
           usort($grupo, function ($a, $b) { 
             $w1 = $a['pts']+0.01*$a['udif']; 
-            $w2 = $a['pts']+0.01*$b['udif']; 
+            $w2 = $b['pts']+0.01*$b['udif']; 
             return -($w1 - $w2);
           }); 
           return $grupo;

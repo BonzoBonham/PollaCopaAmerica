@@ -76,14 +76,20 @@ class ManejarFinalDeLaFaseDeGrupos
        $tablaA = $this->generarTablaGrupo(Equipo::grupo('A'));
        $tablaB = $this->generarTablaGrupo(Equipo::grupo('B'));
        $tablaC = $this->generarTablaGrupo(Equipo::grupo('C'));
+
+       dump('Grupo A',$tablaA);
+       dump('Grupo B',$tablaB);
+       dump('Grupo A',$tablaC);
        array_push($tablaTerceros,$tablaA[2]);
        array_push($tablaTerceros,$tablaB[2]);
        array_push($tablaTerceros,$tablaC[2]);
+
        usort($tablaTerceros, function ($a, $b) { 
             $w1 = $a['pts']+0.01*$a['udif']; 
-            $w2 = $a['pts']+0.01*$b['udif']; 
+            $w2 = $b['pts']+0.01*$b['udif']; 
             return -($w1 - $w2);
         }); 
+       dump($tablaTerceros);
        return $tablaTerceros;
     }
 
@@ -116,7 +122,7 @@ class ManejarFinalDeLaFaseDeGrupos
 
           usort($grupo, function ($a, $b) { 
             $w1 = $a['pts']+0.01*$a['udif']; 
-            $w2 = $a['pts']+0.01*$b['udif']; 
+            $w2 = $b['pts']+0.01*$b['udif']; 
             return -($w1 - $w2);
           }); 
           return $grupo;
