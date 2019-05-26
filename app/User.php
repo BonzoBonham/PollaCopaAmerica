@@ -46,4 +46,8 @@ class User extends Authenticatable
         return $query->where('ganador', '=', '1');
     }
 
+     public function scopeApuestas($query, $apuesta){
+        return $query->where('equipo_id', '=', $apuesta);
+    }
+
 }
