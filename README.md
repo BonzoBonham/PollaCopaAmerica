@@ -65,8 +65,6 @@ para correr el proyecto:
  php artisan jornada:run
  ```
 
- ```
-
 ## Recursos
 * laracast | [https://laracasts.com](https://laracasts.com)
 * importar proyecto | [https://devmarketer.io](https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/)
