@@ -19,13 +19,16 @@
                             <a class="nav-link" href="/eliminatoria"><i class="fas fa-trophy"></i> Copa <span class="sr-only">(current)</span></a>
                           </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/equipos"><i class="fas fa-money-bill"></i> Apostar</a>
+                            <a class="nav-link" href="{{route('equipos.index')}}"><i class="fas fa-money-bill"></i> Apostar</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="/partidos"><i class="fas fa-futbol"></i> Partidos</a>
+                            <a class="nav-link" href="{{route('partidos')}}"><i class="fas fa-futbol"></i> Partidos</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="{{ route('resultados.grupos', ['A'], false) }}"><i class="fas fa-poll-h"></i>  Resultados</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ganadores') }}"><i class="fas fa-poll-h"></i>  Ganadores</a>
                           </li>
 
                     </ul>
