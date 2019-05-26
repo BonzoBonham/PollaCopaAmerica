@@ -32,7 +32,6 @@ class ManejarFinalDeLaFaseDeGrupos
     {
         
                 $mejor3 = $this->generarMejorTercero();
-                dump($mejor3[0], $mejor3[1]);
                 $this->asignarCuartos(3, $mejor3[0]['id']);
                 $this->asignarCuartos( 4, $mejor3[1]['id']);
     }
@@ -62,7 +61,7 @@ class ManejarFinalDeLaFaseDeGrupos
     public function verificarFaseDeGruposTerminada($grupo)
     {
         $equipos = Equipo::grupo($grupo);
-
+        
         $terminado = true;
         foreach ($equipos->get() as $equipo) {
            foreach ($equipo->partidos as $partido) {

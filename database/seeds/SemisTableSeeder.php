@@ -46,6 +46,9 @@ class SemisTableSeeder extends Seeder
     		$this->updatePartido($partidoId,$equiposIds[0]->equipo_id, $e1g ,0);
 	    	$this->updatePartido($partidoId,$equiposIds[1]->equipo_id, $e2g ,1);
     	}
+
+        $partido = Partido::findOrFail($partidoId);
+        event(new PartidoTerminado($partido));
     }
     public function updatePartido($partidoId,$equipoId, $goles , $ganador)
     {
@@ -60,7 +63,5 @@ class SemisTableSeeder extends Seeder
     				'ganador' => $ganador
     			]
     		);
-            $partido = Partido::findOrFail($partidoId);
-            event(new PartidoTerminado($partido));
     }
 }

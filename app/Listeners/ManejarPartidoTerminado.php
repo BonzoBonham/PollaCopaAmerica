@@ -61,8 +61,12 @@ class manejarPartidoTerminado
         
         switch ($fase) {
             case 2:
-                $nextMatch = ($partidoId == 18 ||$partidoId == 19 ) ? 23:24;
-                $this->generarPartido($nextMatch, $ganador);
+                  $nextMatch = ($partidoId == 19 || $partidoId == 20 ) ? 23:24;
+                  $partido = Partido::findOrFail($nextMatch);
+                  $exists =  $partido->equipos()->where('id',$partidoId)->exists();
+                  if(!$exists){
+                  $this->generarPartido($nextMatch, $ganador);
+                }
                 break;
             case 3:
                 $this->generarPartido(26,$ganador);
@@ -164,7 +168,11 @@ class manejarPartidoTerminado
     public function generarPartido($partidoId,$equipoId)
     { 
       $partido = Partido::findOrFail($partidoId);
-      $partido->equipos()->attach($equipoId);
+      $exists =  $partido->equipos()->where('id',$partidoId)->exists();
+      if(!$exists){
+        $partido->equipos()->attach($equipoId);
+      }
+      
       info('new match created sucessfully');
     }
 
