@@ -15,7 +15,7 @@ class UsuariosGanadoresController extends Controller
     }
 
     public function index() {
-        $usuariosGanadores = User::where('ganador','=',1)->get();
+        $usuariosGanadores = User::where('ganador','=',1)->orderBy('name', 'asc')->get();
         //dd ($usuariosGanadores);
         return view('ganadores.index')->with('usuariosGanadores',$usuariosGanadores);
     }
