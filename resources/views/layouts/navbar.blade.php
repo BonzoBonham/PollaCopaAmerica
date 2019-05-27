@@ -18,9 +18,11 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/eliminatoria"><i class="fas fa-trophy"></i> Copa <span class="sr-only">(current)</span></a>
                           </li>
+                          @if(Auth::user()->equipo_id==null)
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('equipos.index')}}"><i class="fas fa-money-bill"></i> Apostar</a>
                           </li>
+                          @endif
                           <li class="nav-item">
                             <a class="nav-link" href="{{route('partidos')}}"><i class="fas fa-futbol"></i> Partidos</a>
                           </li>
