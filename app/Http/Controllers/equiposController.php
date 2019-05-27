@@ -66,8 +66,12 @@ class equiposController extends Controller
     {
         $usuarioInteresado=User::find(Auth::user()->id);
         $equip=Equipo::find($id);
-        $usuarioInteresado->equipo_id=$equip->id;
 
+        $equipoid=User::find(Auth::user()->equipo_id);
+
+        if ($equipoid==null)
+            {$usuarioInteresado->equipo_id=$equip->id;}
+        
         $usuarioInteresado->save();
 
         return redirect()->route('home');
