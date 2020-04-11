@@ -9,7 +9,7 @@ Software para la organizacion de la polla de la Copa America. Desarrollado para 
 :alarm_clock: [log horas](https://docs.google.com/spreadsheets/d/1EumZ7lT7uqr5Nqyd2tLlsDz7mIX3mx0o_pT0jicEsdE/edit?usp=sharing)
 
 
-## Requerimientos
+## Pre-requisitos
 * Laravel | [https://laravel.com](https://laravel.com)
 * Laragon | [https://laragon.org](https://laragon.org)
 * Mysql Workbench | [https://www.mysql.com/products/workbench/](https://www.mysql.com/products/workbench/)
